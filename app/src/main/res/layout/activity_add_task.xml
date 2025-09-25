@@ -6,58 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".AddTaskActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <!-- El ScrollView solo puede tener UN hijo -->
         <LinearLayout
             android:orientation="vertical"
+            android:padding="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
-            <!-- Aquí va tu TableLayout con los campos -->
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1">
+                android:layout_height="wrap_content">
 
                 <TableRow>
                     <TextView
-                        android:text="Título:"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Título:"/>
+
                     <EditText
-                        android:id="@+id/etTitle"
+                        android:id="@+id/etTitulo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese título"/>
                 </TableRow>
 
                 <TableRow>
                     <TextView
-                        android:text="Descripción:"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Descripción:"/>
+
                     <EditText
-                        android:id="@+id/etDescription"
+                        android:id="@+id/etDescripcion"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:hint="Ingrese descripción"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categoría:"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerCategoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="Seleccionar categoría"/>
                 </TableRow>
 
             </TableLayout>
 
-            <!-- Otros widgets fuera del TableLayout pero dentro del LinearLayout -->
-            <CheckBox
-                android:id="@+id/cbImportant"
+            <TextView
+                android:text="Prioridad:"
+                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marcar como importante" />
+                android:layout_height="wrap_content"/>
 
             <RadioGroup
-                android:id="@+id/rgPriority"
-                android:layout_width="wrap_content"
+                android:id="@+id/rgPrioridad"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
                     android:id="@+id/rbHigh"
@@ -76,31 +88,33 @@
                     android:text="Baja"/>
             </RadioGroup>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
+            <CheckBox
+                android:id="@+id/cbImportante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:text="Importante"/>
+
+            <TextView
+                android:text="Nivel de urgencia:"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:stepSize="1"/>
-
-            <ImageView
-                android:id="@+id/imgTask"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_launcher_foreground"/>
+                android:contentDescription="Nivel de urgencia"/>
 
             <Button
                 android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Guardar Tarea"/>
+                android:text="Guardar Tarea"
+                android:layout_marginTop="24dp"/>
         </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

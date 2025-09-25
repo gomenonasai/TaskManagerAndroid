@@ -3,49 +3,76 @@ package com.example.prueba1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddTaskActivity extends AppCompatActivity {
+
+    private EditText etTitulo, etDescripcion;
+    private Spinner spinnerCategoria;
+    private RadioGroup rgPrioridad;
+    private CheckBox cbImportante;
+    private RatingBar ratingBar;
+    private Button btnSave;
+    private int selectedColor = Color.LTGRAY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-        EditText etTitle = findViewById(R.id.etTitle);
-        EditText etDescription = findViewById(R.id.etDescription);
-        RadioGroup rgPriority = findViewById(R.id.rgPriority);
-        CheckBox cbImportant = findViewById(R.id.cbImportant);
-        Button btnSave = findViewById(R.id.btnSave);
+        etTitulo = findViewById(R.id.etTitulo);
+        etDescripcion = findViewById(R.id.etDescripcion);
+        spinnerCategoria = findViewById(R.id.spinnerCategoria);
+        rgPrioridad = findViewById(R.id.rgPrioridad);
+        cbImportante = findViewById(R.id.cbImportante);
+        ratingBar = findViewById(R.id.ratingBar);
+        btnSave = findViewById(R.id.btnSave);
 
-        btnSave.setOnClickListener(v -> {
-            String title = etTitle.getText().toString();
-            String description = etDescription.getText().toString();
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.task_categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategoria.setAdapter(adapter);
 
-            int selectedId = rgPriority.getCheckedRadioButtonId();
-            RadioButton rb = findViewById(selectedId);
-            String priority = (rb != null) ? rb.getText().toString() : "Sin prioridad";
 
-            if (cbImportant.isChecked()) {
-                priority = "Importante";
-            }
+        btnSave.setOnClickListener(v -> saveTask());
+    }
 
-            // Guardar en lista estática crear la tarea
-            TaskRepository.tasks.add(new Task(title, description, priority));
+    private void saveTask() {
+        String title = etTitulo.getText().toString().trim();
+        String description = etDescripcion.getText().toString().trim();
+        String category = spinnerCategoria.getSelectedItem().toString();
 
-            // Cerrar esta Activity y volver a Overview
-            Intent intent = new Intent(AddTaskActivity.this, OverviewActivity.class);
-            startActivity(intent);
+        int selectedId = rgPrioridad.getCheckedRadioButtonId();
+        String prioridad = "";
+        if (selectedId != -1) {
+            RadioButton selectedRadio = findViewById(selectedId);
+            prioridad = selectedRadio.getText().toString();
+        }
 
-            // opcional: cerrar AddTaskActivity para no volver atrás
-            finish();
-        });
+        boolean isImportant = cbImportante.isChecked();
+        float urgencyLevel = ratingBar.getRating();
+
+        if (title.isEmpty()) {
+            Toast.makeText(this, "El título es obligatorio", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        TaskRepository.tasks.add(new Task(title, description, category, prioridad, isImportant, urgencyLevel));
+
+        finish();
     }
 }

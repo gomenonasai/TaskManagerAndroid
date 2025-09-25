@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Prueba1</string>
+    <string-array name="task_categories">
+        <item>Trabajo</item>
+        <item>Estudio</item>
+        <item>Personal</item>
+    </string-array>
+
 </resources>

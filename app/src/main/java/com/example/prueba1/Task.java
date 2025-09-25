@@ -2,20 +2,35 @@ package com.example.prueba1;
 
 public class Task {
 
-    private String title;
-    private String description;
-    private String date;
-    private String priority;
+    private String titulo;
+    private String descripcion;
+    private String categoria;
+    private String prioridad;
+    private boolean importante;
+    private float urgencia;
 
-    public Task(String title, String description, String date) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.priority = priority;
+    private boolean completada;
+
+    public Task(String titulo, String descripcion, String categoria, String prioridad, boolean importante, float urgencia) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.prioridad = prioridad;
+        this.importante = importante;
+        this.urgencia = urgencia;
+        this.completada = false;
     }
 
-    public String getTitle() { return title; }
-    public String getDescription() { return description; }
-    public String getDate() { return date; }
-    public String getPriority() { return priority; }
+    // getters y setters
+    public String getTitulo() { return titulo; }
+    public String getDescripcion() { return descripcion; }
+    public String getCategoria() { return categoria; }
+    public String getPrioridad() { return prioridad; }
+    public boolean isImportante() { return importante; }
+    public float getUrgencia() { return urgencia; }
+
+    public boolean isCompletada() { return completada; }
+    public void setCompletada(boolean completada) {
+        this.completada = completada;
+    }
 }
