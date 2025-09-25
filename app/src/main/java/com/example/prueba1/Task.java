@@ -1,7 +1,7 @@
 package com.example.prueba1;
 
 public class Task {
-
+    // atributos de la tarea
     private String titulo;
     private String descripcion;
     private String categoria;
@@ -9,8 +9,9 @@ public class Task {
     private boolean importante;
     private float urgencia;
 
-    private boolean completada;
+    private boolean completada; // estado de la tarea
 
+    // Constructor
     public Task(String titulo, String descripcion, String categoria, String prioridad, boolean importante, float urgencia) {
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -18,7 +19,7 @@ public class Task {
         this.prioridad = prioridad;
         this.importante = importante;
         this.urgencia = urgencia;
-        this.completada = false;
+        this.completada = false; // por defecto, la tarea se crea como "no completada"
     }
 
     // getters y setters

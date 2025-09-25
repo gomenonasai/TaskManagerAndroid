@@ -6,20 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".AddTaskActivity">
 
+    <!-- scrollview para que se pueda mover en pantallas pequeñas -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- linear layout -->
         <LinearLayout
             android:orientation="vertical"
             android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- table layaout -->
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <!-- título tarea -->
                 <TableRow>
                     <TextView
                         android:layout_width="wrap_content"
@@ -33,6 +37,7 @@
                         android:hint="Ingrese título"/>
                 </TableRow>
 
+                <!-- descripción tarea-->
                 <TableRow>
                     <TextView
                         android:layout_width="wrap_content"
@@ -46,12 +51,12 @@
                         android:hint="Ingrese descripción"/>
                 </TableRow>
 
+                <!-- categoría tarea con spinner-->
                 <TableRow>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Categoría:"/>
-
                     <Spinner
                         android:id="@+id/spinnerCategoria"
                         android:layout_width="match_parent"
@@ -60,7 +65,7 @@
                 </TableRow>
 
             </TableLayout>
-
+            <!-- priopridad tarea con radiobuttons-->
             <TextView
                 android:text="Prioridad:"
                 android:layout_marginTop="16dp"
@@ -87,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="Baja"/>
             </RadioGroup>
-
+            <!-- checkbox importancia tarea -->
             <CheckBox
                 android:id="@+id/cbImportante"
                 android:layout_width="wrap_content"
@@ -100,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <!-- ratingbar nivel de urgencia tarea -->
             <RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
@@ -107,6 +113,7 @@
                 android:numStars="5"
                 android:contentDescription="Nivel de urgencia"/>
 
+            <!-- botón para guardar la tarea -->
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"

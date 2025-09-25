@@ -9,12 +9,13 @@
     app:cardElevation="4dp"
     app:cardCornerRadius="12dp">
 
+    <!-- contenedor de los elementos de la tarjeta -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Título -->
+        <!-- título -->
         <TextView
             android:id="@+id/txtTitulo"
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             android:textColor="@color/black"
             android:layout_marginBottom="6dp"/>
 
-        <!-- Descripción -->
+        <!-- descripción -->
         <TextView
             android:id="@+id/txtDescripcion"
             android:layout_width="match_parent"
@@ -34,7 +35,7 @@
             android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
 
-        <!-- Categoría -->
+        <!-- categoría -->
         <TextView
             android:id="@+id/txtCategoria"
             android:layout_width="match_parent"
@@ -44,7 +45,7 @@
             android:textStyle="italic"
             android:layout_marginBottom="4dp"/>
 
-        <!-- Prioridad y Urgencia en fila -->
+        <!-- prioridad y urgencia -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +71,7 @@
                 android:textSize="14sp"/>
         </LinearLayout>
 
-        <!-- Importante -->
+        <!-- importante con checkbox -->
         <TextView
             android:id="@+id/txtImportante"
             android:layout_width="wrap_content"

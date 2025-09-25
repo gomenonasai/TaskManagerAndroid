@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AddTaskActivity extends AppCompatActivity {
 
+    //componentes de la vista
     private EditText etTitulo, etDescripcion;
     private Spinner spinnerCategoria;
     private RadioGroup rgPrioridad;
@@ -34,6 +35,7 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        // inicializar vistas
         etTitulo = findViewById(R.id.etTitulo);
         etDescripcion = findViewById(R.id.etDescripcion);
         spinnerCategoria = findViewById(R.id.spinnerCategoria);
@@ -42,20 +44,22 @@ public class AddTaskActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         btnSave = findViewById(R.id.btnSave);
 
+        // cargar categorías desde array de categorías
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.task_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategoria.setAdapter(adapter);
 
-
+        // guardar tarea al presionar botón
         btnSave.setOnClickListener(v -> saveTask());
     }
-
+    // método que guarda la tarea en TaskRepository
     private void saveTask() {
         String title = etTitulo.getText().toString().trim();
         String description = etDescripcion.getText().toString().trim();
         String category = spinnerCategoria.getSelectedItem().toString();
 
+        // obtener prioridad seleccionada
         int selectedId = rgPrioridad.getCheckedRadioButtonId();
         String prioridad = "";
         if (selectedId != -1) {
@@ -63,16 +67,25 @@ public class AddTaskActivity extends AppCompatActivity {
             prioridad = selectedRadio.getText().toString();
         }
 
-        boolean isImportant = cbImportante.isChecked();
-        float urgencyLevel = ratingBar.getRating();
+        boolean isImportant = cbImportante.isChecked(); // checkbox
+        float urgencyLevel = ratingBar.getRating();  // estrellas nivel de urgencia
 
+        // título obligatorio validación
         if (title.isEmpty()) {
             Toast.makeText(this, "El título es obligatorio", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        TaskRepository.tasks.add(new Task(title, description, category, prioridad, isImportant, urgencyLevel));
+        // guardar la tarea en el repositorio
+        TaskRepository.tasks.add(
+                new Task(title, description, category, prioridad, isImportant, urgencyLevel)
+        );
 
+        // lanzar LoadingActivity
+        Intent intent = new Intent(AddTaskActivity.this, LoadingActivity.class);
+        startActivity(intent);
+
+        // cerrar la actividad y volver a la lista
         finish();
+        }
     }
-}
